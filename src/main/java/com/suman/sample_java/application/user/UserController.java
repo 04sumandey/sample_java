@@ -3,6 +3,8 @@ package com.suman.sample_java.application.user;
 import java.util.UUID;
 
 import com.suman.sample_java.application.user.dto.*;
+import com.suman.sample_java.common.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +34,7 @@ public class UserController {
         try {
             GetUserResponseDto respDto = userService.getUserById(id);
             return util.SuccessBuilder(respDto).toEntity();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return util.<GetUserResponseDto>FailureBuilder(e).toEntity();
         }
     }
@@ -45,6 +47,15 @@ public class UserController {
             return util.SuccessBuilder(updatedUser).toEntity();
         } catch (Exception e) {
             return util.<UpdateUserResponseDto>FailureBuilder(e).toEntity();
+        }
+    }
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Response<DeleteUserResponseDto>> deleteUser(@PathVariable UUID id) {
+        try {
+           DeleteUserResponseDto response = userService.deleteUserById(id);
+            return util.SuccessBuilder(response).toEntity();
+        } catch (Exception e) {
+            return util.<DeleteUserResponseDto>FailureBuilder(e).toEntity();
         }
     }
 

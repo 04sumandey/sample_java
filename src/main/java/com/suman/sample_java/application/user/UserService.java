@@ -8,4 +8,5 @@ public interface UserService {
     CreateUserResponseDto createUser(CreateUserRequestDto dto);
     GetUserResponseDto getUserById(UUID id);
     UpdateUserResponseDto updateUserById(UUID id, UpdateUserRequestDto dto);
+    DeleteUserResponseDto deleteUserById(UUID id);
 }
