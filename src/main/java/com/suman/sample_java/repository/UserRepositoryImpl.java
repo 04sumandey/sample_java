@@ -26,4 +26,10 @@ public class UserRepositoryImpl implements UserRepository{
     public User getById(UUID id){
         return entityManager.find(User.class, id);
     }
+
+    @Transactional
+    public User updateById(User user){
+        return entityManager.merge(user);
+    }
+
 }
