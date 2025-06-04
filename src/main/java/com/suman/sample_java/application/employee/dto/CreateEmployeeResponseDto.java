@@ -10,13 +10,13 @@ import java.util.UUID;
 @Builder
 public class CreateEmployeeResponseDto {
     @JsonAlias("id")
-    private UUID Id;
+    private UUID id;
     @JsonAlias("first_name")
-    private String FirstName;
+    private String firstName;
     @JsonAlias("last_name")
-    private String Lastname;
+    private String lastName;
     @JsonAlias("email")
-    private String Email;
+    private String email;
     @JsonAlias("phone")
-    private String Phone;
+    private String phone;
 }

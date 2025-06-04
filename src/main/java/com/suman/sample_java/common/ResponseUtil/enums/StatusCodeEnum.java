@@ -1,7 +1,6 @@
 package com.suman.sample_java.common.ResponseUtil.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter

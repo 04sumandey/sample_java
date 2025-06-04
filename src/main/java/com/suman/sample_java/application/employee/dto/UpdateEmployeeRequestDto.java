@@ -8,19 +8,19 @@ import lombok.Data;
 @Data
 public class UpdateEmployeeRequestDto {
     @JsonAlias("first_name")
-    private String FirstName;
+    private String firstName;
     @JsonAlias("last_name")
-    private String LastName;
+    private String lastName;
     @JsonAlias("email")
-    private String Email;
+    private String email;
     @JsonAlias("phone")
-    private String Phone;
+    private String phone;
     public Employee MapToEmployeeEntity() {
         return Employee.builder()
-            .FirstName(this.FirstName)
-            .LastName(this.LastName)
-            .Phone(this.Phone)
-            .Email(this.Email)
+            .FirstName(this.firstName)
+            .LastName(this.lastName)
+            .Phone(this.phone)
+            .Email(this.email)
             .build();
     }
     

@@ -10,11 +10,11 @@ import lombok.Data;
 public class GetEmployeeResponseDto {
     private UUID id;    
     @JsonAlias("first_name")
-    private String FirstName;
+    private String firstName;
     @JsonAlias("last_name")
-    private String LastName;
+    private String lastName;
     @JsonAlias("phone_number")
-    private String Phone;
+    private String phone;
     @JsonAlias("email_address")
-    private String Email;
+    private String email;
 }

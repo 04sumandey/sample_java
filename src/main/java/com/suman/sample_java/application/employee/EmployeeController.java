@@ -21,7 +21,7 @@ public class EmployeeController {
         try {
             Employee employee = Employee.builder()
                     .FirstName(dto.getFirstName())
-                    .LastName(dto.getLastname())
+                    .LastName(dto.getLastName())
                     .Email(dto.getEmail())
                     .Phone(dto.getPhone())
                     .build();
@@ -29,11 +29,11 @@ public class EmployeeController {
             Employee createdEmployee = employeeService.createEmployee(employee);
 
             CreateEmployeeResponseDto respDto = CreateEmployeeResponseDto.builder()
-                    .Id(createdEmployee.getId())
-                    .FirstName(createdEmployee.getFirstName())
-                    .Lastname(createdEmployee.getLastName())
-                    .Phone(createdEmployee.getPhone())
-                    .Email(createdEmployee.getEmail())
+                    .id(createdEmployee.getId())
+                    .firstName(createdEmployee.getFirstName())
+                    .lastName(createdEmployee.getLastName())
+                    .phone(createdEmployee.getPhone())
+                    .email(createdEmployee.getEmail())
                     .build();
 
             return util.SuccessBuilder(respDto).toEntity();
@@ -45,7 +45,15 @@ public class EmployeeController {
     @GetMapping("/employee/{id}")
     public ResponseEntity<Response<GetEmployeeResponseDto>> getEmployee(@PathVariable UUID id) {
         try {
-            GetEmployeeResponseDto responseDto = employeeService.getEmployeeById(id);
+            Employee employee = employeeService.getEmployeeById(id);
+
+            GetEmployeeResponseDto responseDto = GetEmployeeResponseDto.builder()
+                    .id(employee.getId())
+                    .firstName(employee.getFirstName())
+                    .lastName(employee.getLastName())
+                    .phone(employee.getPhone())
+                    .email(employee.getEmail())
+                    .build();
             return util.SuccessBuilder(responseDto).toEntity();
         } catch (Exception e) {
             return util.<GetEmployeeResponseDto>FailureBuilder(e).toEntity();
@@ -57,8 +65,17 @@ public class EmployeeController {
             @PathVariable UUID id,
             @RequestBody UpdateEmployeeRequestDto updateDto) {
         try {
-            UpdateEmployeeResponseDto updatedEmployee = employeeService.updateEmployeeById(id, updateDto);
-            return util.SuccessBuilder(updatedEmployee).toEntity();
+            Employee employee = updateDto.MapToEmployeeEntity();
+            Employee updatedEmployee = employeeService.updateEmployeeById(id, employee);
+
+            UpdateEmployeeResponseDto responseDto = UpdateEmployeeResponseDto.builder()
+                    .id(updatedEmployee.getId())
+                    .firstName(updatedEmployee.getFirstName())
+                    .lastName(updatedEmployee.getLastName())
+                    .phone(updatedEmployee.getPhone())
+                    .email(updatedEmployee.getEmail())
+                    .build();
+            return util.SuccessBuilder(responseDto).toEntity();
         } catch (Exception e) {
             return util.<UpdateEmployeeResponseDto>FailureBuilder(e).toEntity();
         }
@@ -66,8 +83,12 @@ public class EmployeeController {
     @DeleteMapping("/employee/{id}")
     public ResponseEntity<Response<DeleteEmployeeResponseDto>> deleteEmployee(@PathVariable UUID id) {
         try {
-            DeleteEmployeeResponseDto deletedEmployee = employeeService.deleteEmployeeById(id);
-                return util.SuccessBuilder(deletedEmployee).toEntity();
+            employeeService.deleteEmployeeById(id);
+            DeleteEmployeeResponseDto responseDto = DeleteEmployeeResponseDto.builder()
+                    .message("Employee deleted successfully")
+                    .build();
+
+            return util.SuccessBuilder(responseDto).toEntity();
         }catch(Exception e){
             return util.<DeleteEmployeeResponseDto>FailureBuilder(e).toEntity();
         }

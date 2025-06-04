@@ -13,11 +13,11 @@ public class UpdateEmployeeResponseDto {
     
     private UUID id;
     @JsonAlias("first_name")
-    private String FirstName;
+    private String firstName;
     @JsonAlias("last_name")
-    private String LastName;
+    private String lastName;
     @JsonAlias("email")
-    private String Email;
+    private String email;
     @JsonAlias("phone")
-    private String Phone;
+    private String phone;
 }

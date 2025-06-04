@@ -3,8 +3,6 @@ package com.suman.sample_java.application.user;
 import java.util.UUID;
 
 import com.suman.sample_java.application.user.dto.*;
-import com.suman.sample_java.common.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
