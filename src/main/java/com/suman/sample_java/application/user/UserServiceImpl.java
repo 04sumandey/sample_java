@@ -1,11 +1,9 @@
 package com.suman.sample_java.application.user;
 
 import java.util.UUID;
-import java.util.logging.Logger;
 
 import com.suman.sample_java.application.user.dto.*;
 import com.suman.sample_java.common.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.suman.sample_java.domain.entity.User;
